@@ -8,7 +8,12 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "prepare": "husky",
+    "lint-staged": "lint-staged",
+    "commitlint": "commitlint -e -V",
+    "cm": "git-cz",
+    "cm:ci": "git sts && git add . && git sts && git-cz && git push origin HEAD -f"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -40,10 +45,31 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@types/node": "^24.0.13",
     "@types/react": "~19.0.10",
-    "typescript": "~5.8.3",
+    "commitizen": "^4.3.1",
+    "cz-git": "^1.12.0",
     "eslint": "^9.25.0",
-    "eslint-config-expo": "~9.2.0"
+    "eslint-config-expo": "~9.2.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "luxon": "^3.7.1",
+    "typescript": "~5.8.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-git"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx}": [
+      "prettier --write"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
   },
   "private": true
 }

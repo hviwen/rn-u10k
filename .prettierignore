@@ -1,0 +1,15 @@
+dist
+build
+node_modules
+public
+backup
+.husky
+.bin
+docs
+html
+.vscode
+.bundle
+*.log
+.idea
+*.sh
+*.md
