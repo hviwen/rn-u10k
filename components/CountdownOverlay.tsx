@@ -13,7 +13,12 @@ import Animated, {
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window")
 
-export function CountdownOverlay() {
+interface CountdownOverlayProps {
+  onCountdownStart?: () => void
+  onCountdownEnd?: () => void
+}
+
+export function CountdownOverlay({ onCountdownStart, onCountdownEnd }: CountdownOverlayProps) {
   const [currentNumber, setCurrentNumber] = useState<number | null>(3)
   const [isVisible, setIsVisible] = useState(true)
   const isMountedRef = useRef(true)
@@ -65,6 +70,10 @@ export function CountdownOverlay() {
                 overlayOpacity.value = withTiming(0, { duration: 300 }, () => {
                   if (isMountedRef.current) {
                     runOnJS(setIsVisible)(false)
+                    // 通知父组件倒计时结束
+                    if (onCountdownEnd) {
+                      runOnJS(onCountdownEnd)()
+                    }
                   }
                 })
               }
@@ -73,11 +82,16 @@ export function CountdownOverlay() {
         )
       )
     },
-    [scale, overlayOpacity]
+    [scale, overlayOpacity, onCountdownEnd]
   )
 
   useEffect(() => {
     isMountedRef.current = true
+    // 通知父组件倒计时开始
+    if (onCountdownStart) {
+      onCountdownStart()
+    }
+
     // Start countdown automatically when component mounts
     const timer = setTimeout(() => {
       if (isMountedRef.current) {
@@ -89,7 +103,7 @@ export function CountdownOverlay() {
       isMountedRef.current = false
       clearTimeout(timer)
     }
-  }, [animateNumber])
+  }, [animateNumber, onCountdownStart])
 
   // Cleanup on unmount
   useEffect(() => {

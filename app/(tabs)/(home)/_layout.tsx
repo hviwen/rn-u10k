@@ -37,24 +37,24 @@ export default function HomeLayout() {
             headerShown: true,
             headerTitleStyle: {
               fontFamily: "SpaceMono",
-              fontSize: 24
+              fontSize: 18
             },
             headerTitleAlign: "center",
             headerShadowVisible: false
           }}
         />
         <Stack.Screen
-          name="details"
-          options={{
+          name="details/[id]"
+          options={({ route }) => ({
             headerShown: true,
-            title: "Details",
+            title: `${(route.params as any)?.id || "details"} Details`,
             headerTitleStyle: {
               fontFamily: "SpaceMono",
-              fontSize: 24
+              fontSize: 18
             },
             headerTitleAlign: "center",
             headerShadowVisible: false
-          }}
+          })}
         />
       </Stack>
       <StatusBar style="auto" />
