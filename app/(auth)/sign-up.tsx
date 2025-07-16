@@ -1,14 +1,16 @@
 import * as React from "react"
-import { Text, TextInput, TouchableOpacity, View } from "react-native"
+import { Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native"
 import { useSignUp } from "@clerk/clerk-expo"
 import { Link, useRouter } from "expo-router"
+import { ThemedView } from "@/components/ThemedView"
+import { ThemedText } from "@/components/ThemedText"
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp()
   const router = useRouter()
 
-  const [emailAddress, setEmailAddress] = React.useState("")
-  const [password, setPassword] = React.useState("")
+  const [emailAddress, setEmailAddress] = React.useState("hankins.tt2@gmail.com")
+  const [password, setPassword] = React.useState("Password2tt")
   const [pendingVerification, setPendingVerification] = React.useState(false)
   const [code, setCode] = React.useState("")
 
@@ -78,9 +80,9 @@ export default function SignUpScreen() {
   }
 
   return (
-    <View>
+    <ThemedView style={styles.container}>
       <>
-        <Text>Sign up</Text>
+        <ThemedText type="title">Sign up</ThemedText>
         <TextInput
           autoCapitalize="none"
           value={emailAddress}
@@ -94,15 +96,23 @@ export default function SignUpScreen() {
           onChangeText={(password) => setPassword(password)}
         />
         <TouchableOpacity onPress={onSignUpPress}>
-          <Text>Continue</Text>
+          <ThemedText>Continue</ThemedText>
         </TouchableOpacity>
-        <View style={{ display: "flex", flexDirection: "row", gap: 3 }}>
-          <Text>Already have an account?</Text>
+        <ThemedView style={{ display: "flex", flexDirection: "row", gap: 3 }}>
+          <ThemedText>Already have an account?</ThemedText>
           <Link href="/sign-in">
-            <Text>Sign in</Text>
+            <ThemedText type="link">Sign in</ThemedText>
           </Link>
-        </View>
+        </ThemedView>
       </>
-    </View>
+    </ThemedView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }
+})

@@ -1,7 +1,9 @@
 import { useSignIn } from "@clerk/clerk-expo"
 import { Link, useRouter } from "expo-router"
-import { Text, TextInput, TouchableOpacity, View } from "react-native"
+import { Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native"
 import React from "react"
+import { ThemedView } from "@/components/ThemedView"
+import { ThemedText } from "@/components/ThemedText"
 
 export default function Page() {
   const { signIn, setActive, isLoaded } = useSignIn()
@@ -39,8 +41,8 @@ export default function Page() {
   }
 
   return (
-    <View>
-      <Text>Sign in</Text>
+    <ThemedView style={styles.container}>
+      <ThemedText type="title">Sign in</ThemedText>
       <TextInput
         autoCapitalize="none"
         value={emailAddress}
@@ -54,14 +56,39 @@ export default function Page() {
         onChangeText={(password) => setPassword(password)}
       />
       <TouchableOpacity onPress={onSignInPress}>
-        <Text>Continue</Text>
+        <ThemedText>Continue</ThemedText>
       </TouchableOpacity>
-      <View style={{ display: "flex", flexDirection: "row", gap: 3 }}>
-        <Text>Don&#39;t have an account?</Text>
+      <ThemedView style={{ display: "flex", flexDirection: "row", gap: 3 }}>
+        <ThemedText>Don&#39;t have an account?</ThemedText>
         <Link href="/sign-up">
-          <Text>Sign up</Text>
+          <ThemedText type="link">Sign up</ThemedText>
         </Link>
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  input: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    width: "80%"
+  },
+  button: {
+    backgroundColor: "#007BFF",
+    padding: 10,
+    borderRadius: 5
+  },
+  buttonText: {
+    color: "#fff",
+    textAlign: "center"
+  }
+})

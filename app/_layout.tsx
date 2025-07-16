@@ -4,9 +4,14 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native
 import { useFonts } from "expo-font"
 import { Stack } from "expo-router"
 import { StatusBar } from "expo-status-bar"
+import { Image, StyleSheet } from "react-native"
 import "react-native-reanimated"
 
 import { useColorScheme } from "@/hooks/useColorScheme"
+
+function LogoTitle() {
+  return <Image style={styles.image} source={{ uri: "https://rn.nodejs.cn/img/tiny_logo.png" }} />
+}
 
 export default function RootLayout() {
   const colorScheme = useColorScheme()
@@ -24,7 +29,18 @@ export default function RootLayout() {
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="(auth)"
+            options={{
+              headerShown: false,
+              headerStyle: { backgroundColor: "#f4511e" },
+              headerTintColor: "#fff",
+              headerTitleStyle: {
+                fontWeight: "bold"
+              },
+              headerTitle: () => <LogoTitle />
+            }}
+          />
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" />
@@ -32,3 +48,15 @@ export default function RootLayout() {
     </ClerkProvider>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  image: {
+    width: 50,
+    height: 50
+  }
+})
