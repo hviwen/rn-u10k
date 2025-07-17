@@ -1,6 +1,6 @@
 import { useSignIn } from "@clerk/clerk-expo"
 import { Link, useRouter } from "expo-router"
-import { Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native"
+import { TextInput, TouchableOpacity, StyleSheet } from "react-native"
 import React from "react"
 import { ThemedView } from "@/components/ThemedView"
 import { ThemedText } from "@/components/ThemedText"
@@ -9,8 +9,8 @@ export default function Page() {
   const { signIn, setActive, isLoaded } = useSignIn()
   const router = useRouter()
 
-  const [emailAddress, setEmailAddress] = React.useState("")
-  const [password, setPassword] = React.useState("")
+  const [emailAddress, setEmailAddress] = React.useState("hankins.tt1@outlook.com")
+  const [password, setPassword] = React.useState("tts1tts1.")
 
   // Handle the submission of the sign-in form
   const onSignInPress = async () => {

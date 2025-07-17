@@ -9,8 +9,8 @@ export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp()
   const router = useRouter()
 
-  const [emailAddress, setEmailAddress] = React.useState("hankins.tt2@gmail.com")
-  const [password, setPassword] = React.useState("Password2tt")
+  const [emailAddress, setEmailAddress] = React.useState("15354872767@163.com")
+  const [password, setPassword] = React.useState("Password2tts")
   const [pendingVerification, setPendingVerification] = React.useState(false)
   const [code, setCode] = React.useState("")
 
@@ -50,6 +50,8 @@ export default function SignUpScreen() {
         code
       })
 
+      console.log("signUpAttempt \n", JSON.stringify(signUpAttempt, null, 2))
+
       // If verification was completed, set the session to active
       // and redirect the user
       if (signUpAttempt.status === "complete") {
@@ -58,7 +60,7 @@ export default function SignUpScreen() {
       } else {
         // If the status is not complete, check why. User may need to
         // complete further steps.
-        console.error(JSON.stringify(signUpAttempt, null, 2))
+        // console.error(JSON.stringify(signUpAttempt, null, 2))
       }
     } catch (err) {
       // See https://clerk.com/docs/custom-flows/error-handling
@@ -69,13 +71,13 @@ export default function SignUpScreen() {
 
   if (pendingVerification) {
     return (
-      <>
-        <Text>Verify your email</Text>
+      <ThemedView style={styles.container}>
+        <ThemedText type="defaultSemiBold">Verify your email</ThemedText>
         <TextInput value={code} placeholder="Enter your verification code" onChangeText={(code) => setCode(code)} />
         <TouchableOpacity onPress={onVerifyPress}>
-          <Text>Verify</Text>
+          <ThemedText type="defaultSemiBold">Verify</ThemedText>
         </TouchableOpacity>
-      </>
+      </ThemedView>
     )
   }
 

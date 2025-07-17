@@ -32,14 +32,16 @@ export default function RootLayout() {
           <Stack.Screen
             name="(auth)"
             options={{
-              headerShown: false,
               headerStyle: { backgroundColor: "#f4511e" },
               headerTintColor: "#fff",
               headerTitleStyle: {
                 fontWeight: "bold"
               },
-              headerTitle: () => <LogoTitle />
+              headerShadowVisible: false,
+              headerBackTitle: "Back",
+              headerRight: () => <LogoTitle />
             }}
+            getId={() => "auth-layout"}
           />
           <Stack.Screen name="+not-found" />
         </Stack>
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   image: {
-    width: 50,
-    height: 50
+    width: 32,
+    height: 32
   }
 })
