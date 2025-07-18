@@ -3,9 +3,9 @@ import { StyleSheet } from "react-native"
 
 import { HelloWave } from "@/components/HelloWave"
 import ParallaxScrollView from "@/components/ParallaxScrollView"
+import { SignOutButton } from "@/components/SignOutButton"
 import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
-import { SignOutButton } from "@/components/SignOutButton"
 import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo"
 import { Link } from "expo-router"
 
@@ -41,22 +41,25 @@ export default function HomeScreen() {
         <ThemedText type="defaultSemiBold">
           <Link
             href={{
-              pathname: "/details/[id]",
-              params: { id: "bee" }
+              pathname: "/details/[module]/[id]",
+              params: { module: "home", id: "bee" }
             }}
           >
-            View first user details
+            View first user details (Home)
           </Link>
         </ThemedText>
         <ThemedText type="defaultSemiBold">
           <Link
             href={{
-              pathname: "/details/[id]",
-              params: { id: "bacon" }
+              pathname: "/details/[module]/[id]",
+              params: { module: "home", id: "bacon" }
             }}
           >
-            View second user details
+            View second user details (Home)
           </Link>
+        </ThemedText>
+        <ThemedText type="defaultSemiBold">
+          <Link href="/details/home/random-home-detail">View random home detail</Link>
         </ThemedText>
       </ThemedView>
     </ParallaxScrollView>

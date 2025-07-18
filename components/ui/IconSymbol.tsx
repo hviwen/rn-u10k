@@ -21,8 +21,9 @@ const MAPPING = {
   "person.fill": "person",
   "gearshape.fill": "settings",
   "iphone.badge.exclamationmark": "smartphone",
-  "rectangle.on.rectangle.angled": "dashboard"
-} as IconMapping
+  "rectangle.on.rectangle.angled": "dashboard",
+  "info.circle.fill": "info"
+} as IconMapping | any
 
 /**
  * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.

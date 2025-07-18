@@ -49,17 +49,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="settings"
+        name="(settings)"
         options={{
           title: "Settings",
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: "#f4511e"
-          },
-          headerTintColor: Colors[colorScheme ?? "light"].tintTitle,
-          headerTitleStyle: {
-            fontWeight: "bold"
-          },
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="gearshape.fill" color={color} />
         }}
       />

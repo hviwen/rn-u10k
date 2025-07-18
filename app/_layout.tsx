@@ -41,9 +41,17 @@ export default function RootLayout() {
               headerBackTitle: "Back",
               headerRight: () => <LogoTitle />
             }}
-            getId={() => "auth-layout"}
           />
           <Stack.Screen name="+not-found" />
+          <Stack.Screen
+            name="details"
+            options={{
+              headerShown: false,
+              presentation: "card",
+              gestureEnabled: true,
+              gestureDirection: "horizontal"
+            }}
+          />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>

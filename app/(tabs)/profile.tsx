@@ -29,7 +29,7 @@ export default function ProfileScreen() {
 
         <ThemedView style={styles.stepContainer}>
           <ThemedText type="defaultSemiBold" style={styles.text}>
-            <Link href="/(tabs)/settings">{"Go to Settings"}</Link>
+            <Link href="/(tabs)/(settings)">{"Go to Settings"}</Link>
           </ThemedText>
         </ThemedView>
       </ThemedView>
