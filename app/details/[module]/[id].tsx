@@ -5,7 +5,7 @@ import { ThemedView } from "@/components/ThemedView"
 import { IconSymbol } from "@/components/ui/IconSymbol"
 import { useNavigation } from "@react-navigation/native"
 import { router, useLocalSearchParams } from "expo-router"
-import { useCallback } from "react"
+import { useCallback, useEffect } from "react"
 import { Pressable, StyleSheet } from "react-native"
 
 // 模块配置
@@ -13,6 +13,8 @@ const moduleConfig = {
   home: {
     title: "Home Detail",
     headerColor: { light: "#A1CEDC", dark: "#1D3D47" },
+    headerStyle: { backgroundColor: "#A1CEDC" },
+    headerTintColor: "#fff",
     icon: "iphone.badge.exclamationmark",
     iconStyle: {
       color: "#ececec",
@@ -27,6 +29,8 @@ const moduleConfig = {
   settings: {
     title: "Settings Detail",
     headerColor: { light: "#007BFF", dark: "#0056b3" },
+    headerStyle: { backgroundColor: "#007BFF" },
+    headerTintColor: "#fff",
     icon: "info.circle.fill",
     iconStyle: {
       color: "#fff"
@@ -37,6 +41,8 @@ const moduleConfig = {
   default: {
     title: "Detail",
     headerColor: { light: "#D0D0D0", dark: "#353636" },
+    headerStyle: { backgroundColor: "#D0D0D0" },
+    headerTintColor: "#333",
     icon: "rectangle.on.rectangle.angled",
     iconStyle: {
       color: "#ececec"
@@ -52,6 +58,16 @@ export default function ModuleDetailsScreen() {
   // 获取模块配置
   const config = moduleConfig[module as keyof typeof moduleConfig] || moduleConfig.default
 
+  // 设置动态导航选项
+  useEffect(() => {
+    navigation.setOptions({
+      title: config.title,
+      headerStyle: config.headerStyle,
+      headerTintColor: config.headerTintColor,
+      headerBackTitle: "返回"
+    })
+  }, [navigation, config])
+
   const hideHeader = useCallback(() => {
     if (module === "home" && config.showCountdown) {
       navigation.setOptions({
@@ -63,10 +79,14 @@ export default function ModuleDetailsScreen() {
   const showHeader = useCallback(() => {
     if (module === "home" && config.showCountdown) {
       navigation.setOptions({
-        headerShown: true
+        headerShown: true,
+        title: config.title,
+        headerStyle: config.headerStyle,
+        headerTintColor: config.headerTintColor,
+        headerBackTitle: "返回"
       })
     }
-  }, [navigation, module, config.showCountdown])
+  }, [navigation, module, config])
 
   const handleNavigateToDetails = (targetModule: string, targetId?: string) => {
     const newId = targetId || Math.floor(Math.random() * 1000).toString()
@@ -76,19 +96,22 @@ export default function ModuleDetailsScreen() {
   const handleNavigateBack = (targetModule: string) => {
     console.log("Navigating back to", targetModule, "module")
 
-    /*   let pathname = '' as any
-       switch (targetModule) {
-         case 'home':
-           pathname = '/(tabs)/(home)/index'
-           break
-         case 'settings':
-           pathname = '/(tabs)/(settings)/index'
-           break
-         default:
-           pathname = '/(tabs)/(home)/index'
-           break
-       }*/
-    router.back()
+    // 使用 router.navigate 清空导航栈并返回到对应的 tab 首页
+    let pathname = "" as any
+    switch (targetModule) {
+      case "home":
+        pathname = "/(tabs)/(home)/"
+        break
+      case "settings":
+        pathname = "/(tabs)/(settings)/"
+        break
+      default:
+        pathname = "/(tabs)/(home)/"
+        break
+    }
+
+    // 使用 navigate 而不是 back，这样会清空中间的导航栈
+    router.navigate(pathname)
   }
 
   return (

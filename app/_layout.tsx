@@ -43,13 +43,18 @@ export default function RootLayout() {
             }}
           />
           <Stack.Screen name="+not-found" />
+          {/* 直接在根 Stack 中配置详情页面，避免嵌套导航栈 */}
           <Stack.Screen
-            name="details"
+            name="details/[module]/[id]"
             options={{
-              headerShown: false,
+              headerShown: true,
               presentation: "card",
               gestureEnabled: true,
-              gestureDirection: "horizontal"
+              gestureDirection: "horizontal",
+              headerBackTitle: "返回",
+              headerBackVisible: true,
+              // 动态标题将在组件内设置
+              title: "详情"
             }}
           />
         </Stack>
