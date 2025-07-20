@@ -111,6 +111,7 @@ export default function ModuleDetailsScreen() {
     }
 
     // 使用 navigate 而不是 back，这样会清空中间的导航栈
+    router.dismissAll()
     router.navigate(pathname)
   }
 
