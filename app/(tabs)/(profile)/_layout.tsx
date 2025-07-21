@@ -10,6 +10,7 @@ export default function LayoutSettings() {
           name="index"
           options={{
             title: "Profile",
+            drawerLabel: "Profile",
             headerTitleStyle: {
               fontWeight: "bold",
               fontSize: 18
@@ -27,7 +28,16 @@ export default function LayoutSettings() {
           name="user/[id]" // This is the name of the page and must match the url from root
           options={{
             drawerLabel: "User",
-            title: "overview"
+            title: "overview",
+            headerTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 18
+            },
+            headerStyle: {
+              backgroundColor: "deeppink"
+            },
+            headerTintColor: "#fff",
+            headerShadowVisible: false
           }}
         />
       </Drawer>

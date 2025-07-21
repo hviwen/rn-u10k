@@ -21,11 +21,12 @@ export default function ProfileScreen() {
           onPress={() => {
             // navigate to the details screen
             console.log("Navigating to Profile")
+            router.navigate(`/user/${+new Date()}`)
             // You can use the Link component to navigate to a different screen
           }}
         >
           <ThemedText type="defaultSemiBold" style={styles.text}>
-            {"Go to Profile"}
+            {"Go to User"}
           </ThemedText>
         </TouchableOpacity>
 
