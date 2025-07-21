@@ -62,6 +62,19 @@ export default function HomeScreen() {
           <Link href="/details/home/random-home-detail">View random home detail</Link>
         </ThemedText>
       </ThemedView>
+
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="defaultSemiBold">Private Section:</ThemedText>
+        <ThemedText type="defaultSemiBold">
+          <Link href="/private">🔒 Access Private Dashboard</Link>
+        </ThemedText>
+        <ThemedText type="defaultSemiBold">
+          <Link href="/private/profile">👤 Private Profile</Link>
+        </ThemedText>
+        <ThemedText type="defaultSemiBold">
+          <Link href="/private/settings">⚙️ Private Settings</Link>
+        </ThemedText>
+      </ThemedView>
     </ParallaxScrollView>
   )
 }

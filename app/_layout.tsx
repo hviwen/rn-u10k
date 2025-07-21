@@ -1,4 +1,4 @@
-import { ClerkProvider } from "@clerk/clerk-expo"
+import { ClerkProvider, useUser } from "@clerk/clerk-expo"
 import { tokenCache } from "@clerk/clerk-expo/token-cache"
 import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native"
 import { useFonts } from "expo-font"
@@ -8,6 +8,7 @@ import { Image, StyleSheet } from "react-native"
 import "react-native-reanimated"
 
 import { useColorScheme } from "@/hooks/useColorScheme"
+import { useState } from "react"
 
 function LogoTitle() {
   return <Image style={styles.image} source={{ uri: "https://rn.nodejs.cn/img/tiny_logo.png" }} />
@@ -18,6 +19,8 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf")
   })
+
+  const [isLoggedIn, setLoginIn] = useState(false)
 
   if (!loaded) {
     // Async font loading only occurs in development.
@@ -55,6 +58,13 @@ export default function RootLayout() {
               headerBackVisible: true,
               // 动态标题将在组件内设置
               title: "详情"
+            }}
+          />
+
+          <Stack.Screen
+            name="private"
+            options={{
+              headerShown: false
             }}
           />
         </Stack>

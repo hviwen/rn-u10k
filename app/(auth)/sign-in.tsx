@@ -4,6 +4,7 @@ import { TextInput, TouchableOpacity, StyleSheet } from "react-native"
 import React from "react"
 import { ThemedView } from "@/components/ThemedView"
 import { ThemedText } from "@/components/ThemedText"
+import Animated, { FadeIn, SlideInDown } from "react-native-reanimated"
 
 export default function Page() {
   const { signIn, setActive, isLoaded } = useSignIn()
@@ -41,7 +42,7 @@ export default function Page() {
   }
 
   return (
-    <ThemedView style={styles.container}>
+    <Animated.View entering={FadeIn.duration(700)} style={styles.animatedContainer}>
       <ThemedText type="title">Sign in</ThemedText>
       <TextInput
         autoCapitalize="none"
@@ -64,12 +65,12 @@ export default function Page() {
           <ThemedText type="link">Sign up</ThemedText>
         </Link>
       </ThemedView>
-    </ThemedView>
+    </Animated.View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
+  animatedContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center"

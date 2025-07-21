@@ -1,11 +1,13 @@
 import { TouchableOpacity, StyleSheet } from "react-native"
-import { Link } from "expo-router"
+import { Link, useRouter } from "expo-router"
 import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
 import { Image } from "expo-image"
 import ParallaxScrollView from "@/components/ParallaxScrollView"
 
 export default function ProfileScreen() {
+  const router = useRouter()
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -29,7 +31,13 @@ export default function ProfileScreen() {
 
         <ThemedView style={styles.stepContainer}>
           <ThemedText type="defaultSemiBold" style={styles.text}>
-            <Link href="/(tabs)/(settings)">{"Go to Settings"}</Link>
+            <Link
+              href={{
+                pathname: "/(tabs)/(settings)"
+              }}
+            >
+              {"Go to Settings"}
+            </Link>
           </ThemedText>
         </ThemedView>
       </ThemedView>

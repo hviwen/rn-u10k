@@ -1,4 +1,4 @@
-import { Tabs } from "expo-router"
+import { Redirect, Tabs } from "expo-router"
 import React from "react"
 import { Platform } from "react-native"
 
@@ -37,12 +37,13 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
+          href: null,
           title: "Explore",
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="(profile)"
         options={{
           title: "Profile",
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />
