@@ -4,6 +4,7 @@ import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
 import { Image } from "expo-image"
 import ParallaxScrollView from "@/components/ParallaxScrollView"
+import { IconSymbol } from "@/components/ui/IconSymbol"
 
 export default function ProfileScreen() {
   const router = useRouter()
@@ -11,7 +12,8 @@ export default function ProfileScreen() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={<Image source={require("@/assets/images/partial-react-logo.png")} style={styles.reactLogo} />}
+      hasBottomTabOverflow={true}
+      headerImage={<IconSymbol size={180} name="chart.bar.fill" color="#fff" style={styles.headerIcon} />}
     >
       <ThemedView style={styles.wrapper}>
         <ThemedText style={styles.text}>Profile Screen</ThemedText>
@@ -62,11 +64,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20
   },
-  reactLogo: {
+  headerIcon: {
     height: 178,
     width: 290,
-    bottom: -20,
-    left: -20,
+    bottom: 20,
+    left: 20,
     position: "absolute"
   },
   stepContainer: {

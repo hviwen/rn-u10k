@@ -16,7 +16,7 @@ export default function UserScreen() {
       headerImage={
         <Image
           source={require("@/assets/images/partial-react-logo.png")}
-          className="absolute h-[178px] w-[290px] -bottom-5 -left-5"
+          style={{ position: "absolute", height: 178, width: 290, bottom: -5, left: -5 }}
         />
       }
     >
