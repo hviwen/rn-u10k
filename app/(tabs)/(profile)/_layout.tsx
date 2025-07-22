@@ -40,6 +40,22 @@ export default function LayoutSettings() {
             headerShadowVisible: false
           }}
         />
+        <Drawer.Screen
+          name="auth/[id]"
+          options={{
+            drawerLabel: "Supabase Auth",
+            title: "Auth",
+            headerTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 18
+            },
+            headerStyle: {
+              backgroundColor: "purple"
+            },
+            headerTintColor: "#fff",
+            headerShadowVisible: false
+          }}
+        />
       </Drawer>
     </GestureHandlerRootView>
   )
